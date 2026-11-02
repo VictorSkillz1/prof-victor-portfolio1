@@ -26,20 +26,19 @@ if (contactForm) contactForm.addEventListener('submit', (event) => {
 });
 
 
-// Sticky header styling and low-cost scroll reveals
+// Sticky navigation: observe the hero boundary so the pill state persists
+// through every later section and reverses only when returning to the hero.
 const header = document.querySelector('.header');
-const aboutSection = document.querySelector('#about');
-if (header && aboutSection) {
-  const navObserver = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      header.classList.toggle('is-scrolled', entry.isIntersecting);
-    }
+const heroSection = document.querySelector('#home');
+if (header && heroSection && 'IntersectionObserver' in window) {
+  const heroObserver = new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-scrolled', !entry.isIntersecting);
   }, {
     root: null,
-    rootMargin: '-110px 0px 0px 0px',
+    rootMargin: '-82px 0px 0px 0px',
     threshold: 0
   });
-  navObserver.observe(aboutSection);
+  heroObserver.observe(heroSection);
 }
 
 const revealTargets = document.querySelectorAll(\n  'main > section, .footer, .about > div, .section-top, .service, .project, .testimonial-card, .steps > div, .contact-layout > div, .contact-form'\n);
