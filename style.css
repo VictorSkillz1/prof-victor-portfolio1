@@ -16,3 +16,18 @@
 .social-links svg{width:17px;height:17px;display:block}
 .social-links a:focus-visible{outline:2px solid #58d7ff;outline-offset:4px}
 @media(max-width:760px){.social-links{gap:9px}}
+
+
+/* Hero portrait visibility and full-image fit */
+.hero{isolation:isolate}
+.portrait{z-index:1;right:6%;bottom:0;height:100%;max-height:735px;max-width:52%;width:auto;object-fit:contain;object-position:center bottom}
+.hero-left,.hero-side,.scroll,.hero-bottom{z-index:2}
+.hero:after{z-index:0}
+@media(max-width:760px){
+  .portrait{height:52%;max-height:430px;max-width:88%;width:auto;right:0;bottom:18px;object-fit:contain;object-position:center bottom;z-index:1}
+  .hero-left,.scroll,.hero-bottom{z-index:2}
+  .hero:after{z-index:0}
+}
+@media(max-width:500px){
+  .portrait{height:47%;max-height:360px;max-width:92%;right:0;bottom:25px}
+}
