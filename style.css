@@ -104,3 +104,49 @@ main > section, .footer{will-change:opacity,transform}
  .header.is-scrolled .nav{top:70px;left:0;right:0;border-radius:18px;background:rgba(6,19,41,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 }
 @media(prefers-reduced-motion:reduce){.header,.header.is-scrolled{transition:none}}
+
+
+/* New cinematic hero environment — replaces the previous blue radial/grid background */
+.hero{
+  background:#070914;
+  background-image:
+    linear-gradient(180deg,rgba(5,7,18,.08) 0%,rgba(5,8,19,.04) 68%,#070c16 100%);
+  isolation:isolate;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-3;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse 46% 72% at 78% 38%,rgba(35,83,160,.42) 0%,rgba(22,43,92,.22) 38%,transparent 74%),
+    radial-gradient(ellipse 38% 60% at 12% 18%,rgba(91,48,139,.32) 0%,rgba(46,30,83,.16) 48%,transparent 78%),
+    radial-gradient(ellipse 32% 42% at 53% 82%,rgba(10,126,142,.19) 0%,transparent 76%),
+    linear-gradient(118deg,#090b18 0%,#101326 42%,#0a1427 72%,#080d19 100%);
+  background-repeat:no-repeat;
+}
+.hero-grid,.hero .orb{display:none!important}
+.hero:after{
+  background:
+    linear-gradient(90deg,rgba(6,8,20,.97) 0%,rgba(7,10,24,.86) 30%,rgba(7,11,25,.28) 65%,rgba(7,11,25,.08) 100%),
+    linear-gradient(0deg,rgba(7,12,22,.72) 0%,transparent 24%);
+  z-index:0;
+}
+@media(max-width:760px){
+  .hero{
+    background-color:#090c1a;
+    background-image:linear-gradient(180deg,rgba(7,9,22,.22),rgba(7,12,22,.12) 58%,#070c16 100%);
+  }
+  .hero::before{
+    background:
+      radial-gradient(ellipse 95% 48% at 82% 58%,rgba(38,77,145,.36),transparent 75%),
+      radial-gradient(ellipse 90% 45% at 8% 12%,rgba(91,48,139,.28),transparent 76%),
+      radial-gradient(ellipse 80% 38% at 55% 88%,rgba(10,126,142,.16),transparent 78%),
+      linear-gradient(155deg,#090b18 0%,#111326 48%,#0a1427 100%);
+  }
+  .hero:after{
+    background:
+      linear-gradient(180deg,rgba(6,8,20,.86) 0%,rgba(7,10,24,.55) 46%,rgba(7,12,22,.12) 76%,rgba(7,12,22,.68) 100%);
+  }
+}
