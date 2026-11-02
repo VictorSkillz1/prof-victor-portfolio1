@@ -77,3 +77,14 @@ section[id]{scroll-margin-top:96px}
  .reveal-ready .reveal{opacity:1;transform:none;transition:none}
  .service,.steps>div,.project-image-link,.inline-link{transition:none}
 }
+
+
+/* Consistent, subtle motion across every page section */
+main > section, .footer{will-change:opacity,transform}
+.reveal-ready main > section.reveal,.reveal-ready .footer.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal-ready main > section.reveal.is-visible,.reveal-ready .footer.reveal.is-visible{opacity:1;transform:translateY(0)}
+.hero .orb{animation:hero-orb-drift 11s ease-in-out infinite alternate}
+.hero-grid{animation:hero-grid-breathe 9s ease-in-out infinite alternate}
+@keyframes hero-orb-drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-18px,12px,0) scale(1.06)}}
+@keyframes hero-grid-breathe{from{opacity:.55}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.hero .orb,.hero-grid{animation:none}.reveal-ready main > section.reveal,.reveal-ready .footer.reveal{opacity:1;transform:none;transition:none}}
