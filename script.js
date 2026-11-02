@@ -29,14 +29,18 @@ if (contactForm) contactForm.addEventListener('submit', (event) => {
 // Sticky header styling and low-cost scroll reveals
 const header = document.querySelector('.header');
 const aboutSection = document.querySelector('#about');
-const updateHeader = () => {
-  if (!header || !aboutSection) return;
-  const reachedAbout = aboutSection.getBoundingClientRect().top <= header.offsetHeight + 24;
-  header.classList.toggle('is-scrolled', reachedAbout);
-};
-updateHeader();
-window.addEventListener('scroll', updateHeader, { passive: true });
-window.addEventListener('resize', updateHeader, { passive: true });
+if (header && aboutSection) {
+  const navObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      header.classList.toggle('is-scrolled', entry.isIntersecting);
+    }
+  }, {
+    root: null,
+    rootMargin: '-110px 0px 0px 0px',
+    threshold: 0
+  });
+  navObserver.observe(aboutSection);
+}
 
 const revealTargets = document.querySelectorAll(\n  'main > section, .footer, .about > div, .section-top, .service, .project, .testimonial-card, .steps > div, .contact-layout > div, .contact-form'\n);
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
