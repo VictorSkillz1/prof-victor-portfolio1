@@ -32,9 +32,7 @@ const updateHeader = () => header?.classList.toggle('is-scrolled', window.scroll
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-const revealTargets = document.querySelectorAll(
-  '.about, .services .section-top, .service, .project-section .section-top, .project, .testimonials .section-top, .testimonial-card, .process .section-top, .steps > div, .contact-layout > div, .contact-form'
-);
+const revealTargets = document.querySelectorAll(\n  'main > section, .footer, .about > div, .section-top, .service, .project, .testimonial-card, .steps > div, .contact-layout > div, .contact-form'\n);
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('reveal-ready');
   revealTargets.forEach((element) => element.classList.add('reveal'));
