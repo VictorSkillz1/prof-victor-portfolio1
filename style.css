@@ -318,3 +318,20 @@ main > section, .footer{will-change:opacity,transform}
  .header,.header.is-scrolled{transition:none}
  .hero .orb,.hero-grid{animation:none}
 }
+
+
+/* User-requested full-screen personal hero background: remove all decorative layers */
+.hero {
+  min-height: 100vh !important;
+  min-height: 100svh !important;
+  background: url("/ef98c542-e0e9-4194-9a11-91d24ab11ff8.png") center center / cover no-repeat !important;
+}
+.hero::before,
+.hero::after,
+.hero-grid,
+.hero .orb,
+.hero .portrait {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}
