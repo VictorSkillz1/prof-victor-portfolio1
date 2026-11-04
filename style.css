@@ -430,3 +430,12 @@ main > section, .footer{will-change:opacity,transform}
 @media(max-width:760px){
   .header{top:0}
 }
+
+
+/* Restore breathing room around the floating navbar after leaving the hero */
+.header.is-scrolled{
+  top:12px;
+}
+@media(max-width:760px){
+  .header.is-scrolled{top:8px}
+}
