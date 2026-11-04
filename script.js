@@ -41,7 +41,7 @@ if (header && heroSection && 'IntersectionObserver' in window) {
   heroObserver.observe(heroSection);
 }
 
-const revealTargets = document.querySelectorAll(\n  'main > section, .footer, .about > div, .section-top, .service, .project, .testimonial-card, .steps > div, .contact-layout > div, .contact-form'\n);
+const revealTargets = document.querySelectorAll('main > section, .footer, .about > div, .section-top, .service, .project, .testimonial-card, .steps > div, .contact-layout > div, .contact-form');
 if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('reveal-ready');
   revealTargets.forEach((element) => element.classList.add('reveal'));
