@@ -415,3 +415,18 @@ main > section, .footer{will-change:opacity,transform}
 @media(prefers-reduced-motion:reduce){
   .testimonial-card{transition:none}
 }
+
+
+/* Navbar spacing: flush at the top in the hero, preserve the floating pill when scrolled */
+.frame{
+  margin-top:0;
+  border-top:0;
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+.header{
+  top:0;
+}
+@media(max-width:760px){
+  .header{top:0}
+}
