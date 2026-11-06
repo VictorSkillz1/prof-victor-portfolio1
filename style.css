@@ -593,3 +593,12 @@ body{background:#030711}
  .hero-bottom{max-width:64%}.service{min-height:245px}
 }
 @media(prefers-reduced-motion:reduce){.project-image-link,.project-image,.service,.service a,.btn,.nav a,.inline-link,.social-links a{transition:none!important}}
+
+
+/* Restore the original hero banner artwork */
+.hero{
+  background-image:url("/ef98c542-e0e9-4194-9a11-91d24ab11ff8.png") !important;
+  background-position:center center !important;
+  background-size:cover !important;
+  background-repeat:no-repeat !important;
+}
