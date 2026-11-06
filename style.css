@@ -439,3 +439,82 @@ main > section, .footer{will-change:opacity,transform}
 @media(max-width:760px){
   .header.is-scrolled{top:8px}
 }
+
+
+/* ===== Portfolio polish: showcase, motion, responsive UX and conversion ===== */
+.project-intro{max-width:390px}
+.project-intro>p{margin-top:0}
+.project-intro .inline-link{margin-top:8px}
+.project-grid{align-items:stretch;gap:clamp(20px,3vw,34px)}
+.project{min-width:0;display:flex;flex-direction:column;gap:0}
+.project-image-link{position:relative;isolation:isolate;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:#0b1a30;border:1px solid rgba(105,155,220,.3);box-shadow:0 18px 42px rgba(0,0,0,.18)}
+.project-image-link::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,10,24,0) 48%,rgba(3,10,24,.62) 100%);opacity:.65;transition:opacity .35s ease}
+.project-image{transition:transform .7s cubic-bezier(.2,.75,.25,1),filter .5s ease}
+.project-preview{position:absolute;z-index:2;right:18px;bottom:17px;display:inline-flex;align-items:center;gap:10px;padding:10px 13px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(5,15,32,.72);backdrop-filter:blur(12px);color:#fff;font-size:9px;font-weight:800;letter-spacing:.12em;opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease}
+.project-image-link:hover .project-image,.project-image-link:focus-visible .project-image{transform:scale(1.045);filter:saturate(1.08)}
+.project-image-link:hover::after,.project-image-link:focus-visible::after{opacity:1}
+.project-image-link:hover .project-preview,.project-image-link:focus-visible .project-preview{opacity:1;transform:translateY(0)}
+.project-details{display:flex;flex-direction:column;align-items:flex-start;gap:0;padding:21px 2px 0}
+.project-heading{width:100%}
+.project-category{display:block;color:#67aaff;font-size:9px;font-weight:800;letter-spacing:.18em;margin-bottom:9px}
+.project-details h3{font-size:clamp(19px,2vw,25px);letter-spacing:-.045em;margin:0}
+.project-summary{max-width:520px;margin:11px 0 17px!important;font-size:12px!important;line-height:1.8!important}
+.project-cta{display:inline-flex;align-items:center;gap:12px;color:#d6e8ff;font-size:11px;font-weight:800;border-bottom:1px solid rgba(91,159,255,.55);padding:0 0 7px;transition:color .2s ease,gap .2s ease,border-color .2s ease}
+.project-cta:hover{color:#72d9ff;gap:17px;border-color:#72d9ff}
+.project,.service,.steps>div{transform:translateZ(0)}
+.service{border-radius:12px;transition:transform .35s cubic-bezier(.2,.75,.25,1),border-color .3s ease,box-shadow .3s ease,background .3s ease}
+.service:hover{background:linear-gradient(145deg,#101f36,#0b1527)}
+.service a{display:inline-flex;align-items:center;gap:8px;transition:gap .2s ease,color .2s ease}
+.service a:hover{gap:13px;color:#72d9ff}
+.btn{transition:transform .25s cubic-bezier(.2,.75,.25,1),background .25s ease,box-shadow .25s ease,border-color .25s ease}
+.btn-main{box-shadow:0 8px 22px rgba(9,107,255,.16)}
+.btn-main:hover{box-shadow:0 12px 28px rgba(9,107,255,.28)}
+.btn:active{transform:translateY(-1px) scale(.985)}
+.nav a{transition:color .2s ease}
+.contact-fiverr{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:12px!important;font-size:12px!important}
+.contact-fiverr span{color:#a8b6cb}
+.contact-fiverr a{color:#dceaff;font-weight:800;border-bottom:1px solid rgba(91,159,255,.6);padding-bottom:3px;transition:color .2s ease,border-color .2s ease}
+.contact-fiverr a:hover{color:#72d9ff;border-color:#72d9ff}
+.contact-form input,.contact-form textarea{transition:border-color .2s ease,background .2s ease,box-shadow .2s ease}
+.contact-form input:focus,.contact-form textarea:focus{background:rgba(4,19,45,.92);box-shadow:0 0 0 3px rgba(72,156,255,.13)}
+.contact-form button:disabled{opacity:.7;cursor:wait;transform:none}
+.footer-links a,.footer-bottom a{transition:color .2s ease}
+@media(max-width:900px){
+  .header{gap:14px}
+  .nav{gap:12px}
+  .nav a{font-size:11px}
+  .header .logo{font-size:clamp(20px,2.5vw,28px)}
+  .project-intro{max-width:340px}
+}
+@media(max-width:760px){
+  .section-top{margin-bottom:30px}
+  .project-intro{max-width:none}
+  .project-intro .inline-link{margin-top:0}
+  .project-grid{grid-template-columns:1fr;gap:34px}
+  .project-image-link{aspect-ratio:16/10;border-radius:10px}
+  .project-preview{opacity:1;transform:none;font-size:8px;right:12px;bottom:12px;padding:9px 11px}
+  .project-details{padding-top:17px}
+  .project-summary{max-width:unset}
+  .project-cta{min-height:34px}
+  .service{min-height:270px}
+  .contact-layout{gap:26px}
+  .contact-form{max-width:none}
+  .contact-form .btn{width:100%;min-height:50px}
+  .header .nav{max-height:calc(100svh - 100px);overflow-y:auto}
+}
+@media(max-width:500px){
+  .project-image-link{aspect-ratio:4/3}
+  .project-category{font-size:8px}
+  .project-details h3{font-size:21px}
+  .contact-fiverr{font-size:11px!important}
+  .contact-email a{overflow-wrap:anywhere}
+  .hero-actions .btn{min-height:46px}
+}
+@media(hover:none){
+  .project-preview{opacity:1;transform:none}
+  .service:hover,.steps>div:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-image,.project-preview,.project-image-link::after,.service,.service a,.btn,.nav a,.contact-fiverr a,.contact-form input,.contact-form textarea,.footer-links a,.footer-bottom a{transition:none!important}
+  .project-image-link:hover .project-image{transform:none}
+}
