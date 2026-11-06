@@ -13,17 +13,54 @@ menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const contactForm = document.querySelector('#contactForm');
-if (contactForm) contactForm.addEventListener('submit', (event) => {
- event.preventDefault();
- const data = new FormData(contactForm);
- const name = String(data.get('name') || '').trim();
- const email = String(data.get('email') || '').trim();
- const project = String(data.get('project') || '').trim();
- const subject = encodeURIComponent('Website Project Enquiry from ' + name);
- const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nProject details:\n' + project);
- document.querySelector('#formStatus').textContent = 'Your email app is opening. Press Send there to deliver your enquiry.';
- window.location.href = 'mailto:victorsignatures@gmail.com?subject=' + subject + '&body=' + body;
-});
+if (contactForm) {
+  const formStatus = document.querySelector('#formStatus');
+  const submitButton = contactForm.querySelector('button[type="submit"]');
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    if (!contactForm.reportValidity()) return;
+
+    const originalButtonHTML = submitButton.innerHTML;
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+    submitButton.textContent = 'Sending enquiry…';
+    formStatus.textContent = 'Sending your enquiry securely…';
+    formStatus.dataset.state = 'sending';
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      if (response.ok) {
+        contactForm.reset();
+        formStatus.textContent = 'Thank you! Your enquiry has been sent successfully. I’ll get back to you by email.';
+        formStatus.dataset.state = 'success';
+      } else {
+        let message = 'Something went wrong while sending your enquiry. Please try again or email victorsignatures@gmail.com directly.';
+        try {
+          const result = await response.json();
+          if (result.errors?.length) {
+            message = result.errors.map(error => error.message).join(' ');
+          }
+        } catch (_) {}
+        formStatus.textContent = message;
+        formStatus.dataset.state = 'error';
+      }
+    } catch (error) {
+      formStatus.textContent = 'We couldn’t connect to the form service. Please check your connection and try again, or email victorsignatures@gmail.com directly.';
+      formStatus.dataset.state = 'error';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+      submitButton.innerHTML = originalButtonHTML;
+    }
+  });
+}
 
 
 // Sticky navigation: observe the hero boundary so the pill state persists
