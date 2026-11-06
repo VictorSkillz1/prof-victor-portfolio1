@@ -10,6 +10,23 @@ menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => 
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Open menu');
 }));
+
+const closeMobileMenu = () => {
+  menu.classList.remove('open');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Open menu');
+};
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu.classList.contains('open')) {
+    closeMobileMenu();
+    toggle.focus();
+  }
+});
+document.addEventListener('click', (event) => {
+  if (menu.classList.contains('open') && !menu.contains(event.target) && !toggle.contains(event.target)) {
+    closeMobileMenu();
+  }
+});
 document.querySelector('#year').textContent = new Date().getFullYear();
 
 const contactForm = document.querySelector('#contactForm');
