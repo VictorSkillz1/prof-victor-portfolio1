@@ -602,3 +602,7 @@ body{background:#030711}
   background-size:cover !important;
   background-repeat:no-repeat !important;
 }
+
+
+/* Keep the original hero banner artwork; remove the extra portrait overlay. */
+.hero .portrait{display:none!important}
