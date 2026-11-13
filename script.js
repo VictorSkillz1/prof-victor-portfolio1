@@ -233,3 +233,45 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   measure();
   requestAnimationFrame(render);
 })();
+
+
+// Active navigation link follows the section currently in view.
+// Kept independent from the header's existing scroll/resize animation.
+(() => {
+  const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
+  const observedSections = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  if (!navLinks.length || !observedSections.length || !('IntersectionObserver' in window)) return;
+
+  const setActiveLink = (sectionId) => {
+    navLinks.forEach(link => {
+      const isActive = link.getAttribute('href') === '#' + sectionId;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'location');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    });
+  };
+
+  setActiveLink('home');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    const visibleSections = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+    if (visibleSections.length) {
+      setActiveLink(visibleSections[0].target.id);
+    }
+  }, {
+    root: null,
+    rootMargin: '-24% 0px -65% 0px',
+    threshold: 0
+  });
+
+  observedSections.forEach(section => sectionObserver.observe(section));
+})();
