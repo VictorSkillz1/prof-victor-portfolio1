@@ -606,3 +606,37 @@ body{background:#030711}
 
 /* Keep the original hero banner artwork; remove the extra portrait overlay. */
 .hero .portrait{display:none!important}
+
+
+/* Rounded white active/hover states for navigation links.
+   This only styles the links; the header's existing scroll animation is untouched. */
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  color: #d7e0ef;
+  background: transparent;
+  transition: color .2s ease, background-color .2s ease, box-shadow .2s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible,
+.nav a.is-active {
+  color: #071326 !important;
+  background: #f4f7fc;
+}
+
+.nav a.is-active {
+  box-shadow: 0 3px 12px rgba(0,0,0,.12);
+}
+
+@media (max-width: 760px) {
+  .nav a {
+    align-self: flex-start;
+    min-height: 38px;
+    padding: 9px 16px;
+  }
+}
