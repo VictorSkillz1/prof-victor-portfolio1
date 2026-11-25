@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://prof-victor-portfolio1.vercel.app/sitemap.xml
